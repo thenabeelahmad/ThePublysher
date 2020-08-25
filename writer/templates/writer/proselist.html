@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ThePublysher</title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 400 15px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+  }
+  i
+  {
+  	color: black;
+  }
+  button
+  {
+  	color: black;
+  	font-size: 18px
+  }
+  button:hover
+  {
+  	background-color:lightgreen
+  }
+
+
+  h2 {
+    text-transform: uppercase;
+    color:black;
+    font-size: 23px;
+    letter-spacing:1px;
+    
+  }
+   
+    .jumbotron {
+    color:black;
+    background-color:white;
+    padding: 12px 0px;
+    border:2px solid dodgerblue;
+    font-family: Montserrat, sans-serif;
+  }
+  
+  .fa
+  {
+  	color: dodgerblue;
+  	font-size: 24px;
+  }
+  
+  #button
+  {
+    font-weight: bolder;
+    padding: 5px 12px;
+  }
+  #button:hover
+  {
+     background-color:rgb(0,0,0,0.3);
+     color:white;
+     font-weight: bolder;
+     transition:.8s;
+     outline: none;
+  }
+  h1	
+{
+	color: white;
+	background-color: black;
+	text-align: center;
+    font-size: 50px;
+	margin-top: 0px;
+	padding: 15px
+
+}
+input
+{
+	outline: none;
+	font-size: 18px;
+}
+#p
+{
+	font-size: 18px
+}
+.panel {
+    border: 3px solid dodgerblue; 
+    border-radius:0 !important;
+    transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .3);
+  }
+ 
+  .panel-heading {
+    background-color: white !important;
+  }
+  .panel-heading h3 {
+    font-size: 32px;
+    color: dodgerblue;
+    font-weight: bold;
+  }
+  .panel-heading h4 {
+    color: (0,0,0,0.1);
+    font-size: 18px;
+  }
+  @media screen and (min-width: 600px)
+  {
+    .container
+	{
+	width: 45%;
+	}
+
+  }
+  </style>
+</head>
+<h1>ThePublysher</h1>
+
+<h3 style="text-align: center;">Categorize Your Search</h3>
+
+<div class="container-fluid">
+	
+<div id="pricing"  class="container-fluid bg-grey">
+    <div class="row">
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h3>Publisher</h3>
+          <h4>Know the best Sellers</h4>
+          <button>Search <i class="fa fa-search"></i></button>
+        </div>
+      </div>      
+    </div>     
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h3>Short Stories</h3>
+          <h4>Get the most read Stories</h4>
+          <button>Search <i class="fa fa-search"></i></button>
+        </div>
+      </div>      
+    </div>       
+    <div class="col-sm-4 col-xs-12">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+          <h3>Genre</h3>
+          <h4>Search the best Tales</h4>
+          <button>Search <i class="fa fa-search"></i></button>
+        </div>
+      </div>      
+    </div>    
+  </div>
+</div>
+</div>
+<br>
+
+
+ <div class="container">
+<div class="text-center">
+<form action="{% url 'filter' %}" method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="form-group">
+						<input  type="text" placeholder="Search whatever comes to your mind" name="author" value="" class="form-control">
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Search" class="btn btn-info">
+					</div>
+				</form><hr>			
+</div>
+</div>
+
+
+{% for i in data %}
+
+<div class="container text-center">
+<div class="jumbotron">
+  <h2><strong>{{i.3}}</strong></h2> 
+  <p id="p">{{i.4}} <i class="fa fa-tag" style="font-size: 26px"></i><strong style="color: red"> {{i.5}}</strong></p> 
+  <p style="font-size: 15px;font-weight: bold;">{{i.2}}</p> 
+  <button id="button" class="btn btn-default btn-lg" onclick="window.location.href='{% url 'prosedetail' u=i.3 %}' ">Open to Read</button>
+</div>
+</div>
+{% endfor %}
+
+
+
+</body>
+</html>

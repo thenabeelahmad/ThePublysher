@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="https://allfont.net/allfont.css?fonts=virgo-01">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+
+body { font:  Montserrat, sans-serif;font-size: 20px;
+}
+* {box-sizing: border-box;}
+
+button
+{
+	font-size:20px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  outline: none;
+  background-color: transparent;
+  border:none;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+label
+{
+	font-size: 18px
+}
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  font-size: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+#container {
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 	40px;
+
+}
+.container-fluid
+{
+  padding-top: 40px;
+}
+h1	
+{
+	color: white;
+	background-color: black;
+	text-align: center;
+  font-size: 50px;
+	margin-top: 0px;
+	padding: 15px
+
+}
+#container
+{
+  border:3px solid rgb(0,0,0,0.6);
+
+}
+
+.bg-grey {
+    background-color:black;
+    color: white
+  }
+  p
+  {
+  	font-size: 18px;
+  }
+  #info
+  {
+  	border:3px solid dodgerblue;
+  	
+  }
+  h3
+  {
+  	font-size: 24px;
+  }
+
+@media screen and (max-width: 600px)
+  {
+  	#container
+  	{	
+  		margin-top: 50px;
+      margin:5px;
+  		
+  	}
+    h1
+    {
+      font-size: 34px
+    }
+  }
+</style>
+</head>
+<body>
+<h1>ThePublysher</h1>
+<h3 style="text-align: center;margin-top: 40px">Edit and Change</h3>
+
+<div class="container" id="container" style="background-color:rgb(0,0,0,0.02);" data-aos="zoom-in" data-aos-duration=2000>
+ 
+	<form action="{% url 'editprofile' %}" method="POST">
+
+    {% csrf_token %}
+          
+    <label for="fname">UserName</label>
+    <input type="text" id="fname" value="{{user}}" readonly="" name="us" required placeholder="Your name here..">
+
+    <label for="lname">Name</label>
+    <input type="text" id="lname" maxlength="50" value="{{user.first_name}}" name="fname" required placeholder="Enter valid phone number..">
+
+    <label for="lname">Email</label>
+    <input type="email" id="lname" value="{{user.email}}" name="email" required placeholder="Enter valid email address..">
+
+    <input class="col-xs-12 col-sm-12" type="submit" value="Edit" class="btn btn-warning" id="submit">
+  </form>
+</div>
+<br><br>
+
+	
+<h2 style="text-align: center;font-size: 35px">Information About Us</h2>
+<div class="container-fluid">
+	<div class="container">
+	<div class="text-center">
+		<div class="row">
+			<div class="col-sm-12">
+			<h3 style="color: black">Address</h3>
+    	    <p>B-2124 Indira Nagar, Lucknow</p>
+      		<p>Pin: 226016</div><p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="text-center">
+		<div class="row">
+			<div class="col-sm-12">
+			<h3 style="color: black">Phone Numbers</h3>
+    	    <p>+91 8114145573</p>
+      		<p>+91 6387504775</div><p>
+			</div>
+		</div>
+	</div>
+
+<div class="container">
+	<div class="text-center">
+		<div class="row">
+			<div class="col-sm-12">
+			<h3 style="color: black">Email Address</h3>
+    	    <p>nabeelahmad4644@gmail.com</p>
+    	    <br>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<h3></h3>
+<div id="contact" class="container-fluid bg-grey" >
+  <div class="container">
+  <div class="text-center">
+  <div class="row">
+    <div class="col-sm-3 col-xs-6">
+      <div> 
+      <h3 style="color:white">Company</h3>
+      <p id="p">About</p>
+      <p id="p">Press</p>
+      <p id="p">Headquarters</p>
+      
+    </div>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+          
+        <div class="row">
+      <h3 style="color:white">Community</h3>
+      <p id="p">For Education</p>
+      <p id="p">For Business</p>
+      <p id="p" onclick="window.location.href='sponsorship.html'">Sponsorships</p>
+     
+        </div>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+        <div class="row">
+
+      <h3 style="color:white">Social</h3>
+      <p id="p" onclick="window.location.href='https://www.Facebook.com'">Facebook</p>
+      <p id="p" onclick="window.location.href='https://www.Instagram.com/the_nabeelahmad'">Instagram</p>
+      <p id="p" onclick="window.location.href='https://www.Twitter.com/the_nabeelahmad'">Twitter</p>
+
+        </div>
+    </div>
+    
+    <div class="col-sm-3 col-xs-6">
+        <div class="row">
+
+      <h3 style="color:white">Resources</h3>
+      <p id="p" onclick="window.location.href='contact.html'">Contact</p>
+      <p id="p">Partnerships</p>
+      <p id="p">Webinars</p>
+        </div>
+    </div>
+    
+
+</div>    
+</div>
+<hr>
+<h5 class="text-center">NABEEL AHMAD</h5>
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+</html>

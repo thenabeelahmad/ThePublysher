@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ThePublysher</title>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 400 15px Montserrat, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+  }
+  
+  
+  h2 {
+    font-size: 50px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    letter-spacing: 8px;
+    margin-bottom: 30px;
+  }
+  h1
+  {
+  	font-size: 40px;
+  	text-transform: uppercase;
+    color:white!important;
+    font-weight:700;
+    letter-spacing: 20px;
+    margin-bottom: 30px;
+    
+  }
+
+  
+  h4 {
+    font-size: 24px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+
+  }  
+
+  textarea:hover
+  {
+    border:2px solid dodgerblue;
+  }
+  input:hover
+  {
+    border:2px solid dodgerblue;
+  }
+  .jumbotron {
+    color: white;
+    background-image: url('static/bg1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 230px 0px;
+    font-family: Montserrat, sans-serif;
+  }
+  .container-fluid {
+    padding-top: 60px;
+  }
+  #ready
+  {
+    padding-top: 30px;
+  }
+
+  .bg-grey {
+    background-color:black;
+    color: white
+  }
+
+  
+  
+  .item span {
+    font-style: normal;
+  }
+  
+  
+  .navbar {
+    margin-bottom: 0;
+    background-color:black;
+    z-index: 9999;
+    border: 0;
+    padding: 10px;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color:white!important;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 5px solid transparent;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color:white!important;
+    background-color: black!important;
+    border-bottom: 5px solid gold;
+}
+  .navbar-default .navbar-toggle {
+    border-color:white !important;
+    color:#111!important;
+  }
+ .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color:dodgerblue;
+  }
+  .fa
+  {
+    color: white!important
+  }
+  #p
+  {
+    font-size: 18px
+  }
+  #p:hover
+  {
+    color: dodgerblue;
+  }
+  #button
+  {
+    font-size: 24px;
+    font-weight: bolder;
+    padding: 9px 28px;
+  }
+  #button:hover
+  {
+     background-color:rgb(0,0,0,0.6);
+     color:white;
+     font-weight: bolder;
+     transition:.8s
+  }
+  #contact
+  {
+    padding-bottom: 40px;
+    padding-top: 30px
+  }
+  .icon-bar
+  {
+  	background-color: white!important;
+  }
+  #newhome
+  {
+    margin-top: 100px
+  }
+  .fa
+  {
+    font-size: 24px
+  }
+  hr
+  {
+
+    border-top:1.5px solid white;
+  }
+  #kab
+  {
+    font-size: 32px;
+    margin-bottom: 30px;
+  }
+  
+
+ 
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage" style="font-size: 40px;letter-spacing: 6px">Publysher</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        {% if not user.is_authenticated %} 
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#read">READ</a></li>
+        <li><a href="#write">WRITE</a></li>
+        <li><a href="{% url 'signup' %}" style="color: gold!important;">GETSTARTED</a></li>
+        {% else %}
+        <li><a href="{% url 'editprofile' %}"><i class="fa fa-user-o"></i></a></li>
+        <li><a href="{% url 'filter' %}"><i class="fa fa-search"></i></a></li>
+        <li><a href="{% url 'myposts' %}"><i class="fa fa-list"></i></a></li>
+        <li><a href="{% url 'addpost' %}"><i class="fa fa-pencil-square-o"></i></a></li>
+        <li><a href="{% url 'disbookmark' %}"><i class="fa fa-bookmark"></i></a></li>
+        <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i></a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% if not user.is_authenticated %}
+
+<div class="jumbotron text-center">
+  <h1 id="nab">Publysher</h1> 
+  <p id="kab">Write to read, Read to write</p> 
+   <button id="button" class="btn btn-default btn-lg" onclick="window.location.href='{% url 'signup' %}'">Get Started</button>
+</div>
+
+<!-- Container (About Section) -->
+<div  id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">About us</h2><br>
+      <h4><strong>NAFINA</strong> Technology Company is an IT Services and Business Consulting Company that works for the digitization of businesses and organizations. 
+      We have the dedicated source and expertise for website designing, website development and digital marketing services. We believe in giving proper service to every customer, We don't look at your business type and startup size. 
+      We assign the project to the expert for finalizing the product, when the whole team gets satisfied then only we hand over the product to our customers.
+      We provide you with the service not only the product. 
+      <strong>NAFINA</strong> is ready to help companies, enterprises and students for college assignments,
+      We aim to give high quality cost effective services. 
+      
+    </div>
+  </div>
+</div>
+</div>
+
+<div  id="read" class="container-fluid ">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">READ</h2><br>
+      <h4><strong>NAFINA</strong>
+      	Technology Company is an IT Services and Business Consulting Company that works for the digitization of businesses and organizations. 
+      We have the dedicated source and expertise for website designing, website development and digital marketing services. We believe in giving proper service to every customer, We don't look at your business type and startup size. 
+      We assign the project to the expert for finalizing the product, when the whole team gets satisfied then only we hand over the product to our customers.
+      We provide you with the service not only the product. 
+      <strong>NAFINA</strong> is ready to help companies, enterprises and students for college assignments,
+      We aim to give high quality cost effective services. 
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div  id="write" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">WRITE</h2><br>
+      <h4><strong>NAFINA</strong> Technology Company is an IT Services and Business Consulting Company that works for the digitization of businesses and organizations. 
+      We have the dedicated source and expertise for website designing, website development and digital marketing services. We believe in giving proper service to every customer, We don't look at your business type and startup size. 
+      We assign the project to the expert for finalizing the product, when the whole team gets satisfied then only we hand over the product to our customers.
+      We provide you with the service not only the product. 
+      <strong>NAFINA</strong> is ready to help companies, enterprises and students for college assignments,
+      We aim to give high quality cost effective services. 
+      
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid bg-grey" >
+  <h2 class="text-center" style="margin-bottom: 0px">SUPPORT</h2>
+  <div class="container">
+  <div class="text-center">
+  <div class="row">
+    <div class="col-sm-3 col-xs-6">
+      <div> 
+      <h3>Company</h3>
+      <p id="p">About</p>
+      <p id="p">Press</p>
+      <p id="p">Headquarters</p>
+      
+    </div>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+          
+        <div class="row">
+      <h3>Community</h3>
+      <p id="p">For Education</p>
+      <p id="p">For Business</p>
+      <p id="p" onclick="window.location.href='sponsorship.html'">Sponsorships</p>
+     
+        </div>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+        <div class="row">
+
+      <h3>Social</h3>
+      <p id="p" onclick="window.location.href='https://www.Facebook.com'">Facebook</p>
+      <p id="p" onclick="window.location.href='https://www.Instagram.com/the_nabeelahmad'">Instagram</p>
+      <p id="p" onclick="window.location.href='https://www.Twitter.com/the_nabeelahmad'">Twitter</p>
+
+        </div>
+    </div>
+    
+    <div class="col-sm-3 col-xs-6">
+        <div class="row">
+
+      <h3>Resources</h3>
+      <p id="p" onclick="window.location.href='contact.html'">Contact</p>
+      <p id="p">Partnerships</p>
+      <p id="p">Webinars</p>
+        </div>
+    </div>
+    
+
+</div>
+<div class="text-center">
+  <hr>
+  <h5>NABEEL AHMAD</h5>
+</div>    
+</div>
+</div>
+
+{% elif user.is_authenticated %}
+<br><br>
+<div class="container-fluid text-center">
+{% for i in post %}
+    <div class="col-sm-3 col-xs-12">  
+      <div class="row">
+      <h3 style="color: black">{{i.3}}</h3>
+      <p>{{i.4}}</p>
+      <p><strong style="color:teal">{{i.2}}</strong> {{i.7}}</p>
+      <button id="button" style="padding: 0px 40px;font-size: 20px;font-weight: 100;border:1px solid black" class="btn btn-default btn-lg" onclick="window.location.href='{% url 'prosedetail' u=i.3 %}' ">read</button>
+      </div>
+    </div>
+{% endfor %}
+</div>
+<br>
+{% endif %}
+
+
+
+
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+</script>
+
+</body>
+</html>
